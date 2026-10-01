@@ -11,10 +11,11 @@ class CataasClient:
 
     URL = "https://cataas.com/cat"
     FILE_DIR = "./AIE-8"
-    CURRENT_DIR = Path().cwd()
+    
 
     def __init__(self, text):
         self.text = text
+        self.CURRENT_DIR = Path().cwd()
 
     def get_json(self):
         spinner = Halo(text="файл с надписью готовится к скачиванию")
@@ -116,11 +117,12 @@ class Yandex:
 
     Y_URL = "https://cloud-api.yandex.net/v1/disk/resources"
 
-    FOLDER_EXISTS = False
+    
 
     def __init__(self, token):
         self.token = token
-
+        self.FOLDER_EXISTS = False
+        
     def write_to_ydisk(self, text, image_url):
 
         spinner = Halo(
@@ -188,12 +190,12 @@ class Yandex:
 
         if self.FOLDER_EXISTS == False:
             spinner.succeed(
-                f"файл пошел к Вам на яндекс диск - статус ответа: {response.status_code}"
+                f"файл пошел к Вам на яндекс диск в папку AIE-8"
             )
         else:
-            spinner.succeed(f"""Папка на яндекс диске AIE-8 уже была создана раньше. 
-    поэтому записываю в уже существующую папку 
-    сейчас файл уходит к Вам на яндекс диск 
+            spinner.succeed(f"""Папка на яндекс диске AIE-8 была создана ранее,
+    поэтому записываю в уже существующую папку AIE-8 
+    файл уходит к Вам на яндекс диск 
     До свидания!""")
 
 
